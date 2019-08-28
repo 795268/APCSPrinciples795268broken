@@ -32,17 +32,20 @@ checkEdges(){
 }
 
 updates(){
+
+
+  while (this.y3 == this.y2 -40){
+  this.y1 = this.y1 + this.dy;
+  this.y2 = this.y2+ this.dy;
+  this.y3 = this.y3 + this.dy;
+}
+
   this.x1 = this.x1 + this.dx;
   this.x2 = this.x2 + this.dx;
   this.x3 = this.x3 + this.dx;
 
-  if (this.y3 == this.y2 -40){
-  this.y1 = this.y1 + this.dy;
-  this.y2 = this.y2+ this.dy;
-  this.y3 = this.y3 + this.dy;
 
 
-}
 }
 
 render(){
