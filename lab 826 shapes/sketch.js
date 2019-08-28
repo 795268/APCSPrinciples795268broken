@@ -9,7 +9,7 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
 
-loadShapes(50, 90);
+loadShapes(30, 30, 70);
 }
 
 //  The draw function is called @ 30 fps
@@ -25,9 +25,9 @@ function loadShapes(x, y, z){
   for (var i = x; i < x+y; i++){
     shapes[i] = new Square (random(width), random (height), random(-8,8), random(-8,8));
   }
-  // for (var i = x+y ; i < x+y+z ; i++){
-  //   shapes [i] = new Triangle
-  // }
+  for (var i = x+y ; i < x+y+z ; i++){
+    shapes [i] = new Triangle (random(40, width-40), random (40, height-40), random(-8,8), random(-8,8));
+  }
 }
 
   function runShapes(){
