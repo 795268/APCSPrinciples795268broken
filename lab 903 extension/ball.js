@@ -38,12 +38,10 @@ class Ball {
   update(){
     var distToMainBall;
     var distToMainBall2;
-    var distToMidBall
 //    var distToMid;
     if(this.id > 2){
      distToMainBall = this.loc.dist(mainBall.loc);
      distToMainBall2 = this.loc.dist(mainBall2.loc);
-
      if(distToMainBall < 250){
        //add attraction
        this.acc = p5.Vector.sub(mainBall.loc, this.loc);

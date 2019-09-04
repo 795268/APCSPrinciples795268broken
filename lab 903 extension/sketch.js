@@ -5,7 +5,7 @@
 var balls = []; //declares array
 var mainBall;
 var mainBall2;
-var midBall;
+var midBalll;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
