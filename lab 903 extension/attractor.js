@@ -3,7 +3,7 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 
-class Ball {
+class Attractor extends Ball {
   constructor(x, y, dx, dy, id){
    this.loc = createVector(x, y);
    this.vel = createVector(dx, dy);

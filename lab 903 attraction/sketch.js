@@ -5,12 +5,11 @@
 var balls = []; //declares array
 var mainBall;
 var mainBall2;
-var midBall;
+
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-
   loadBalls(70);
 
 }
@@ -18,8 +17,8 @@ function setup() {
 
 function draw() {
 background(5,5,5,20);
-midBall = ellipse (400, 400, 60, 60 );
   runBalls();
+  
 }
 
 function loadBalls(x){

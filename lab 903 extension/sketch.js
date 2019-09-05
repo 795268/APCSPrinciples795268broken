@@ -5,24 +5,22 @@
 var balls = []; //declares array
 var mainBall;
 var mainBall2;
-var midBalll;
+var midBall;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-
   loadBalls(70);
-
 }
 
 
 function draw() {
 background(5,5,5,20);
-midBall = ellipse (400, 400, 60, 60 );
   runBalls();
 }
 
 function loadBalls(x){
+  midBall = new Ball (400, 400, 0, 0, -1)
   mainBall = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 1);
   mainBall2 = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 2);
   for(var i = 0; i < x; i++){
@@ -33,6 +31,7 @@ function loadBalls(x){
 function runBalls(){
   mainBall.run();
   mainBall2.run();
+  midBall.run();
   for(var i = 0; i < balls.length; i++){
     balls[i].run();
 }
