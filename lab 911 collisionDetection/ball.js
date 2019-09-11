@@ -6,10 +6,9 @@
 class Ball{
 
   constructor(x, y, dx, dy){
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy= dy;
+    this.loc = createVector(x, y);
+    this.vel = createVector (dx, dy);
+    this.acc = createVector (0, -1);
     this.clr = color(random(255), random(255), random(255));
   }
 
@@ -20,25 +19,28 @@ run(){
 }
 
 checkEdges(){
-  if(this.x< 0) {this.dx = -this.dx}
-  if (this.x> width) this.dx = -this.dx;
-  if (this.y < 0) this.dy = - this.dy;
-  if(this.y> height) this.dy = -this.dy;
+  if(this.loc.x< 0) {this.vel. x = -this.vel.x}
+  if (this.loc.x> width) this.vel.x = -this.vel.x;
+  if (this.loc.y < 0) this.vel.y = - this.vel.y;
+  if(this.loc.y> height) this.vel.y = -this.vely;
 }
 
 updates(){
-  this.x = this.x + this.dx;
-  this.y = this.y + this.dy;
+  //this.vel.add(this.acc);
+  this.loc.add(this.vel);
 }
 
 render(){
   fill( this.clr);
-  ellipse(this.x, this.y, 50, 50);
+  ellipse(this.loc.x, this.loc.y, 50, 50);
 }
 
 isColliding(){
-if (this.loc.x > paddle.x && this.loc.x < paddle.x+ w && this.loc.)
+  if (this.loc.x> paddle.x && this.loc.x < paddle.x+w && this.loc.y > paddle.y && this.loc.y < paddle.y+h){
+    return true;
+  } else{
+    return false;
+  }
 }
-
 
 }//  +++++++++++++++++++++++++++++++++++  End Ball Class

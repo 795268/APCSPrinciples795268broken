@@ -1,41 +1,42 @@
-//  Your Name
-// 	Date or version number
+//  Elena Campell
+// 	lab 903
 //  This is a comment
 //  The setup function function is called once when your program begins
-var b1, b2, b3, b4;
 
+//var balls = []; //declares array
+var ball;
+var paddle;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-<<<<<<< HEAD
-  b1 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0));
-  b2 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0));
-  b3 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0));
-  b4 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0));
+  //loadBalls(70);
+  ball = new Ball (random(width), random(height), random (-5,5), random(-5,5));
+  paddle = new Paddle (350, 650, 100, 100);
 }
 
-=======
-b1 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0))
-b2 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0))
-b3 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0))
-b4 = new Ball (random(800), random(800), random(-5.0, 5.0), random(-5.0,5.0))
 
-photo.mask(maskImage);
- image(photo, 0, 0);
-
-}
-function preload(){
-  photo = loadImage('dino.jpg');
-  maskImage = loadImage('assets/mask2.png');
-}
->>>>>>> b011805ef074c76e6279a96c1d21572f29681932
-
-
-//  The draw function is called @ 30 fps
 function draw() {
-  b1.run();
-  b2.run();
-  b3.run();
-  b4.run();
+background(5,5,5,20);
+
+
+ball.run();
+paddle.render()
+
 }
+
+// function loadBalls(x){
+//   mainBall = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 1);
+//   mainBall2 = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 2);
+//   for(var i = 0; i < x; i++){
+//     balls[i]=new Ball(random(width), random(height), random (-1,1), random(-1,1), i+3);
+//   }
+// }
+
+// function runBalls(){
+//   mainBall.run();
+//   mainBall2.run();
+//   for(var i = 0; i < balls.length; i++){
+//     balls[i].run();
+//}
+//}
