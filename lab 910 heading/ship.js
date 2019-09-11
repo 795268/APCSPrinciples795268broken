@@ -1,5 +1,5 @@
 //  Elena Campell
-// 	9/06
+// 	9/10
 //  This is a comment
 //  The setup function function is called once when your program begins
 
@@ -48,17 +48,17 @@ class Ship {
        this.acc.normalize();
        this.acc.mult(0.1);
      }
-     if(distToMainBall < 150){ // add repulsion
-       this.acc = p5.Vector.sub(this.loc, mainBall.loc);
-       this.acc.normalize();
-       this.acc.mult(0.5);
-     }
-     if(distToMainBall2 < 250){
-       //add attraction
-       this.acc = p5.Vector.sub(mainBall2.loc, this.loc);
-       this.acc.normalize();
-       this.acc.mult(0.1);
-   }
+     // if(distToMainBall < 150){ // add repulsion
+     //   this.acc = p5.Vector.sub(this.loc, mainBall.loc);
+     //   this.acc.normalize();
+     //   this.acc.mult(0.5);
+     // }
+     // if(distToMainBall2 < 250){
+     //   //add attraction
+     //   this.acc = p5.Vector.sub(mainBall2.loc, this.loc);
+     //   this.acc.normalize();
+     //   this.acc.mult(0.1);
+   //}
      if(distToMainBall2 < 150){ // add repulsion
        this.acc = p5.Vector.sub(this.loc, mainBall2.loc);
        this.acc.normalize();
@@ -68,17 +68,17 @@ class Ship {
     this.vel.limit(5);
      this.vel.add(this.acc);
    this.loc.add(this.vel);
-   this.loc.heading();
 
 
   }
 
   render(){
+    this.heading = this.vel.heading();
     fill(this.clr);
     this.angle = this.angle +1;
     push();
     translate (this.loc.x, this.loc.y);
-    rotate (this.angle);
+    rotate (this.heading +1);
     triangle (-5, 8, 5,8,0, -8);
     pop();
   }

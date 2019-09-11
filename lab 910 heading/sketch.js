@@ -16,14 +16,14 @@ function setup() {
 
 
 function draw() {
-background(5,5,5,20);
+background(5,5,5,30);
 runObjects();
 
 }
 
 function loadObjects(x){
-  mainBall = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 1);
-  mainBall2 = new Ball(random(width/2), random(height/2), random (-.4,.4), random(-.4,.4), 2);
+  mainBall = new Ball(random(width/2), random(height/2), random (-4,4), random(-4,4), 1);
+  mainBall2 = new Ball(random(width/2), random(height/2), random (-4,4), random(-4,4), 2);
   for(var i = 0; i < x; i++){
     ships[i]=new Ship(random(width), random(height), random (-1,1), random(-1,1), i+3);
   }
