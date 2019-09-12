@@ -16,6 +16,7 @@ run(){
   this.checkEdges();
   this.updates();
   this.render();
+  this.bounce();
 }
 
 checkEdges(){
@@ -36,14 +37,14 @@ render(){
 }
 
 isColliding(){
-  if (this.loc.x> paddle.x && this.loc.x < paddle.x+w && this.loc.y > paddle.y && this.loc.y < paddle.y+h){
+  if (this.loc.x> paddle.loc.x && this.loc.x < paddle.loc.x +paddle.w && this.loc.y > paddle.loc.y && this.loc.y < paddle.loc.y +paddle.h){
     return true;
   } else{
     return false;
   }
 }
 bounce(){
-  if (isColliding == true){
+  if (this.isColliding() == true){
     this.vel.x = - this.vel.x;
     this.vel.y = -this.vel.y;
   }
