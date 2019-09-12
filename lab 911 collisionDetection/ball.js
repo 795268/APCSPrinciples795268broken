@@ -27,7 +27,7 @@ checkEdges(){
 }
 
 updates(){
-  //this.vel.add(this.acc);
+//  this.vel.add(this.acc);
   this.loc.add(this.vel);
 }
 

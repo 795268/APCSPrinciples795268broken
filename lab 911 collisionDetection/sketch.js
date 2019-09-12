@@ -22,7 +22,7 @@ runObjects();
 function loadObjects(x){
   paddle = new Paddle (400, 600, 150, 40);
   for(var i = 0; i < x; i++){
-    balls[i]=new Ball(random(width), random(height), 5,5);
+    balls[i]=new Ball(random(width), random(height), 30,30);
   }
 }
 
