@@ -12,7 +12,7 @@ function setup() {
   background(5, 5, 5);
   //loadBalls(70);
   ball = new Ball (random(width), random(height), random (-5,5), random(-5,5));
-  paddle = new Paddle (350, 650, 100, 100);
+  paddle = new Paddle (300, 700, 200, 50);
 }
 
 

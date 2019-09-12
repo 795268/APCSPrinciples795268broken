@@ -22,7 +22,7 @@ checkEdges(){
   if(this.loc.x< 0) {this.vel. x = -this.vel.x}
   if (this.loc.x> width) this.vel.x = -this.vel.x;
   if (this.loc.y < 0) this.vel.y = - this.vel.y;
-  if(this.loc.y> height) this.vel.y = -this.vely;
+  if(this.loc.y> height) this.vel.y = -this.vel.y;
 }
 
 updates(){
@@ -40,6 +40,12 @@ isColliding(){
     return true;
   } else{
     return false;
+  }
+}
+bounce(){
+  if (isColliding == true){
+    this.vel.x = - this.vel.x;
+    this.vel.y = -this.vel.y;
   }
 }
 
