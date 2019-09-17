@@ -56,13 +56,14 @@ isCollidingBottom(){
   }
 }
 removeBall(){
-    for (var i = 0; i < balls.length; i++){
-      if (this.isCollidingTop() == true){
-        if (balls[i] == this.ball) {
-        balls.splice(i,1);
-      }
-    }
-  }
+  //   for (var i = 0; i < balls.length; i++){
+  //     if (this.isCollidingTop() == true){
+  //       if (balls[i] == this.ball) {
+  //       balls.splice(i,1);
+  //     }
+  //   }
+  // }
+  balls.splice(1); 
 }
 
 // bounce(){
