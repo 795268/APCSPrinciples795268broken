@@ -3,16 +3,16 @@
 //  The setup function function is called once when your program begins
 var balls = []; //declares array
 var paddle;
-
+var difficulty;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-  loadObjects(1);
+  loadObjects(6);
 }
 
 function draw() {
-  var gameState = 1;
+  var gameState = 3;
 background(5,5,5);
 if (gameState ===1){
   startGame(); //start screen
@@ -42,24 +42,33 @@ rect (200, 700, 400, 75);
 
 textSize (60);
 text ("EASY", 55, 525, 200, 200);
-text ("HARD", 555, 525, 200, 200);
+text ("HARD", 560, 525, 200, 200);
 textSize(45);
 text ("MEDIUM", 305, 530, 200, 200);
 fill (0);
-text ("INSTRUCTIONS", 300, 700, 400, 75);
+text ("INSTRUCTIONS", 205, 712, 400, 75);
+// difficulty
+//if
+
 }
 function playGame(){
+  fill (255);
+  textSize (40);
+  text ("SCORE:", 20 , 50);
   runObjects();
 }
 function endGame(){ //
+textSize(80);
+fill (255);
+text ("GAME OVER", 150, 250);
 
 }
 
 
 function loadObjects(x){
-  paddle = new Paddle (400, 600, 150, 40);
+  paddle = new Paddle (400, 500, 150, 40);
   for(var i = 0; i < x; i++){
-    balls[i]=new Ball(random(width), 0 , 10,10);
+    balls[i]=new Ball(random(width), 0 , 4,4, i);
   }
 }
 
@@ -68,4 +77,8 @@ paddle.run();
 for(var i = 0; i < balls.length; i++){
     balls[i].run();
 }
+}
+
+function checkDifficulty(){
+
 }

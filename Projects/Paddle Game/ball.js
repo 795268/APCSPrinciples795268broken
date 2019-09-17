@@ -5,11 +5,12 @@
 
 class Ball{
 
-  constructor(x, y, dx, dy){
+  constructor(x, y, dx, dy, id){
     this.loc = createVector(x, y);
     this.vel = createVector (dx, dy);
     this.acc = createVector (0, .7);
-    this.clr = color(random(255), random(255), random(255));
+    this.id = id;
+    //this.clr = color(random(255), random(255), random(255));
   }
 
 run(){
@@ -33,8 +34,12 @@ this.vel.add(this.acc);
 }
 
 render(){
-  fill( this.clr);
-  ellipse(this.loc.x, this.loc.y, 50, 50);
+  if (this.id%2 === 0){
+    fill (250, 0, 0);
+  }else if (this.id%2 === 1){
+    fill (0, 250, 0);
+  }
+  ellipse(this.loc.x, this.loc.y, 30, 30);
 }
 
 isCollidingTop(){
@@ -56,14 +61,9 @@ isCollidingBottom(){
   }
 }
 removeBall(){
-  //   for (var i = 0; i < balls.length; i++){
-  //     if (this.isCollidingTop() == true){
-  //       if (balls[i] == this.ball) {
-  //       balls.splice(i,1);
-  //     }
-  //   }
-  // }
-  balls.splice(1); 
+  if (this.isCollidingTop() === true){
+    balls.splice(this.id, 1);
+  }
 }
 
 // bounce(){
