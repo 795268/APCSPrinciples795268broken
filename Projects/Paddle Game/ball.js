@@ -18,7 +18,7 @@ run(){
   this.update();
   this.render();
   this.removeBall();
-//  this.bounce();
+  this.score();
 }
 
 checkEdges(){
@@ -34,43 +34,36 @@ this.vel.add(this.acc);
 }
 
 render(){
-  if (this.id%2 === 0){
+  if (this.id%2 === 0){ //makes half balls red
     fill (250, 0, 0);
-  }else if (this.id%2 === 1){
+  }else if (this.id%2 === 1){ //half the balls green
     fill (0, 250, 0);
   }
   ellipse(this.loc.x, this.loc.y, 30, 30);
 }
 
-isCollidingTop(){
+isColliding(){
   if (this.loc.x> paddle.loc.x &&
     this.loc.x < paddle.loc.x +paddle.w &&
-  this.loc.y > paddle.loc.y){
+  this.loc.y > paddle.loc.y && this.loc.y < paddle.loc.y +paddle.h){
     return true;
   } else{
     return false;
-  }
-}
-isCollidingBottom(){
-  if (this.loc.x> paddle.loc.x &&
-    this.loc.x < paddle.loc.x +paddle.w &&
-     this.loc.y < paddle.loc.y +paddle.h ){
-    return true;
-  } else{
-    return false;
-  }
-}
-removeBall(){
-  if (this.isCollidingTop() === true){
-    balls.splice(this.id, 1);
   }
 }
 
-// bounce(){
-//   if (this.isCollidingBottom() == true){
-//     this.vel.x = -this.vel.x;
-//     this.vel.y = - this.vel.y;
-//   }
-// }
+removeBall(){
+  if (this.isColliding() === true){
+      balls.splice(this.id, 1);
+  }
+}
+
+score( ){
+  if (this.isColliding()===true && this.id %2 === 1){
+    score ++;
+  }else if (this.isColliding() === true && this.id %2 ===0){
+    score--;
+  }
+}
 
 }//  +++++++++++++++++++++++++++++++++++  End Ball Class
