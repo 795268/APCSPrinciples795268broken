@@ -4,16 +4,17 @@
 var balls = []; //declares array
 var paddle;
 var difficulty;
-var score;
+var score =0;
+var gameState = 1;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-  loadObjects(6);
+  loadObjects(30);
 }
 
 function draw() {
-  var gameState = 2;
+
 background(5,5,5);
 if (gameState ===1){
   startGame(); //start screen
@@ -49,12 +50,12 @@ text ("MEDIUM", 305, 530, 200, 200);
 fill (0);
 text ("INSTRUCTIONS", 205, 712, 400, 75);
 
-//mouseClicked();
+mouseClicked();
 }// end start game
 function playGame(){
   fill (255);
   textSize (40);
-  text ("SCORE:" + ball.score(), 20 , 50);
+ text ("SCORE:" + score, 20 , 50);
   runObjects();
 }
 

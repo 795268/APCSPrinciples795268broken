@@ -34,7 +34,10 @@ this.vel.add(this.acc);
 }
 
 render(){
-  if (this.id%2 === 0){ //makes half balls red
+if (this.id === 15){
+  fill (6,6,250);
+}
+  else if (this.id%2 === 0){ //makes half balls red
     fill (250, 0, 0);
   }else if (this.id%2 === 1){ //half the balls green
     fill (0, 250, 0);
@@ -53,15 +56,20 @@ isColliding(){
 }
 
 removeBall(){
-  if (this.isColliding() === true){
-      balls.splice(this.id, 1);
+if (this.vel.y > 0 ){
+  for (var i = balls.length-1; i >= 0; i--){
+    if (balls[i].isColliding()){
+      balls.splice(i, 1);
+      return true;
+    }
   }
 }
+}
 
-score( ){
-  if (this.isColliding()===true && this.id %2 === 1){
+score(){
+  if (this.removeBall()===true && this.id %2 === 1){
     score ++;
-  }else if (this.isColliding() === true && this.id %2 ===0){
+  }else if (this.removeBall() === true && this.id %2 ===0){
     score--;
   }
 }
