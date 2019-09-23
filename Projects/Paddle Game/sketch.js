@@ -10,7 +10,7 @@ function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-  loadObjects(10);
+  //loadObjects(10);
 }
 
 function draw() {
@@ -52,23 +52,23 @@ text ("MEDIUM", 305, 530, 200, 200);
 fill (0);
 text ("INSTRUCTIONS", 205, 712, 400, 75);
 
-while (mouseClicked()){
-
-if (difficulty === 1){
+checkDifficulty();
+if (difficulty === 'easy' || difficulty === 'medium'|| difficulty === 'hard'){
+if (difficulty === 'easy'){
   loadObjects(5);
-}else if (difficulty === 2){
+}else if (difficulty === 'medium'){
   loadObjects (15);
-}else if (difficulty === 3){
+}else if (difficulty === 'hard'){
   loadObjects (20);
 }
+
 gameState = 2;
 }
 }// end start game
 function playGame(){
   fill (255);
-textSize (40);
- text ("SCORE:" + score, 100 , 50);
-
+  textSize (40);
+  text ("SCORE:" + score, 100 , 50);
   runObjects();
 }
 
@@ -79,18 +79,17 @@ text ("GAME OVER", 150, 250);
 
 }
 
-function mouseClicked(){
-  if (mouseX > 50 && mouseX < 250 && mouseY > 450 && mouseY < 650){// over easy button
-    difficulty = 1;
+function checkDifficulty(){
+  if (mouseIsPressed && mouseX > 50 && mouseX < 250 && mouseY > 450 && mouseY < 650){// over easy button
+    difficulty = 'easy';
     //gameState =2;
-  } else if (mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
-    difficulty = 2;
+  } if (mouseIsPressed &&mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
+    difficulty = 'medium';
     //gameState =2;
-  }else if (mouseX > 550 && mouseX < 750 && mouseY > 450 && mouseY < 650){
-    difficulty = 3;
+  } if (mouseIsPressed && mouseX > 550 && mouseX < 750 && mouseY > 450 && mouseY < 650){
+    difficulty = 'hard';
   //  gameState =2;
   }
-  return false;
 }
 function loadObjects(x){
   paddle = new Paddle (400, 500, 150, 40);
@@ -105,7 +104,10 @@ for(var i = 0; i < balls.length; i++){
     balls[i].run();
 }
 }
-
-function checkDifficulty(){
-
+function checkRed(){
+  for (var i = 0 ; i < balls.length; i++){
+    if (balls[i].getID() % 2 ===0){
+      
+    }
+  }
 }

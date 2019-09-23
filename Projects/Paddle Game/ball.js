@@ -73,5 +73,9 @@ score(){
     score--;
   }
 }
+getID()
+{
+  return this.id; 
+}
 
 }//  +++++++++++++++++++++++++++++++++++  End Ball Class
