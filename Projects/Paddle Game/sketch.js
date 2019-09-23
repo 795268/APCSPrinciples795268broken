@@ -6,6 +6,7 @@ var paddle;
 var difficulty;
 var score =0;
 var gameState = 1;
+var win;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
@@ -70,12 +71,27 @@ function playGame(){
   textSize (40);
   text ("SCORE:" + score, 100 , 50);
   runObjects();
+  if (checkRed() === true){
+    gameState= 3;
+    win = 'yes';
+  } else if( balls.length === 0){
+    gameState = 3;
+    win = 'no';
+  }
 }
 
 function endGame(){ //
-textSize(80);
-fill (255);
-text ("GAME OVER", 150, 250);
+  if (win === 'yes'){
+    textSize(80);
+    fill (255);
+    text ("YOU WIN", 400, 250);
+    text ("SCORE:" + score, 450, 325);
+  }else if (win === 'no'){
+    textSize(80);
+    fill (255);
+    text ("YOU LOSE", 400, 250);
+  }
+
 
 }
 
@@ -105,9 +121,14 @@ for(var i = 0; i < balls.length; i++){
 }
 }
 function checkRed(){
+  var numRed = 0;
+  while (balls.length > 0){
   for (var i = 0 ; i < balls.length; i++){
-    if (balls[i].getID() % 2 ===0){
-      
-    }
+   if (balls[i].getID()% 2===0){
+numRed++;     }
   }
+  if (balls.length === numRed){
+    return true;
+  }
+}
 }
