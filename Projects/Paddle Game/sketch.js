@@ -22,9 +22,10 @@ if (gameState ===1){
 }else if (gameState === 2){
   playGame(); //game screen
 }else if (gameState === 3){
-  endGame();
-} //game over screen
-
+  instructionsText();
+}else if (gameState === 4){ //game over screen
+endGame();
+}
 }
 
 
@@ -53,6 +54,10 @@ text ("MEDIUM", 305, 530, 200, 200);
 fill (0);
 text ("INSTRUCTIONS", 205, 712, 400, 75);
 
+if (mouseIsPressed &&mouseX > 200 && mouseX < 600 && mouseY > 700 && mouseY < 775){
+  gameState = 3;
+}
+
 checkDifficulty();
 if (difficulty === 'easy' || difficulty === 'medium'|| difficulty === 'hard'){
 if (difficulty === 'easy'){
@@ -66,36 +71,72 @@ if (difficulty === 'easy'){
 gameState = 2;
 }
 }// end start game
+
+function instructionsText(){
+
+  textSize(30);
+  fill(255);
+  text("Move the mouse side to side to move the paddle.", 400, 100);
+  text("Hit the green balls with the paddle to increase score", 400, 150);
+  text("If you hit a red ball, your score will decrease", 400, 200);
+  text("Once you have removed all the green balls, you win!", 400, 250);
+  text("If your score goes below 0, you lose ", 400, 300);
+
+  fill(255)
+  rect(150, 600, 500, 100);
+  fill(0);
+  textSize(50);
+  text("Back to Main Menu", 400, 675)
+
+  if(mouseIsPressed&&
+    mouseX>150&&
+    mouseX<650&&
+    mouseY>600&&
+    mouseY<700){
+      gameState = 1;
+    }
+}
+
+
 function playGame(){
   fill (255);
   textSize (40);
   text ("SCORE:" + score, 100 , 50);
   runObjects();
-  if (checkRed() === true){
-    gameState= 3;
+  if (checkRed() === true|| balls.length ===0){
+    gameState= 4;
     win = 'yes';
-  } else if( balls.length === 0){
-    gameState = 3;
+  } else if( score < 0 ){
+    gameState = 4;
     win = 'no';
   }
 }
+
 
 function endGame(){ //
   if (win === 'yes'){
     textSize(80);
     fill (255);
     text ("YOU WIN", 400, 250);
-    text ("SCORE:" + score, 450, 325);
+    text ("SCORE:" + score, 400, 350);
   }else if (win === 'no'){
     textSize(80);
     fill (255);
     text ("YOU LOSE", 400, 250);
   }
 
+fill (255);
+textSize(60);
+rect (200, 600, 200, 100);
+text ("REPLAY LEVEL", 200, 630);
 
-}
+} //easy
+
 
 function checkDifficulty(){
+  if (mouseIsPressed &&mouseX > 50 && mouseX < 250 && mouseY > 450 && mouseY < 650){
+     difficulty = 'easy';
+   }
  if (mouseIsPressed &&mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
     difficulty = 'medium';
     //gameState =2;
