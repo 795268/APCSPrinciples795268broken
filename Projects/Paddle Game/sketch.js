@@ -96,10 +96,7 @@ function endGame(){ //
 }
 
 function checkDifficulty(){
-  if (mouseIsPressed && mouseX > 50 && mouseX < 250 && mouseY > 450 && mouseY < 650){// over easy button
-    difficulty = 'easy';
-    //gameState =2;
-  } if (mouseIsPressed &&mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
+ if (mouseIsPressed &&mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
     difficulty = 'medium';
     //gameState =2;
   } if (mouseIsPressed && mouseX > 550 && mouseX < 750 && mouseY > 450 && mouseY < 650){
@@ -122,7 +119,6 @@ for(var i = 0; i < balls.length; i++){
 }
 function checkRed(){
   var numRed = 0;
-  while (balls.length > 0){
   for (var i = 0 ; i < balls.length; i++){
    if (balls[i].getID()% 2===0){
 numRed++;     }
@@ -130,5 +126,5 @@ numRed++;     }
   if (balls.length === numRed){
     return true;
   }
-}
+
 }
