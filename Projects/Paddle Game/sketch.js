@@ -7,11 +7,12 @@ var difficulty;
 var score =0;
 var gameState = 1;
 var win;
+var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
-  //loadObjects(10);
+newButton();
 }
 
 function draw() {
@@ -28,6 +29,16 @@ endGame();
 }
 }
 
+function newButton(){
+btnEasy = new Button(50, 450, 200, 200, color(78, 219, 18) );
+btnMed = new Button(300, 450, 200, 200, color (250,250,7));
+btnHard = new Button(550, 450, 200, 200, color(250, 0, 0));
+btnInstructions = new Button (200, 700, 400, 74, color(255));
+btnBTMI = new Button (150, 150, 500, 100, color(255));
+btnReplay = new Button (100, 600, 200, 100, color (255));
+}
+
+
 
 function startGame(){ // choose easy med hard
 textSize(80);
@@ -37,16 +48,14 @@ text ("PADDLE", 400, 200); //title
 textAlign(CENTER);
 
 text ("GAME", 400, 300);
-fill (78,219,18);//easy
-rect (50, 450, 200, 200); //easy
-fill (250, 250, 7); //med
-rect (300, 450, 200, 200);//med
-fill (250, 0, 0 );//hard
-rect (550, 450, 200, 200);//hard
-fill(255);// instructions
-rect (200, 700, 400, 75);
+
+btnEasy.render();
+btnMed.render();
+btnHard.render();
+btnInstructions.render();
 
 textSize (60);
+fill(255);
 text ("EASY", 55, 525, 200, 200);
 text ("HARD", 560, 525, 200, 200);
 textSize(45);
@@ -54,7 +63,7 @@ text ("MEDIUM", 305, 530, 200, 200);
 fill (0);
 text ("INSTRUCTIONS", 205, 712, 400, 75);
 
-if (mouseIsPressed &&mouseX > 200 && mouseX < 600 && mouseY > 700 && mouseY < 775){
+if (btnInstructions.isClicked()=== true){
   gameState = 3;
 }
 
@@ -67,7 +76,6 @@ if (difficulty === 'easy'){
 }else if (difficulty === 'hard'){
   loadObjects (20);
 }
-
 gameState = 2;
 }
 }// end start game
@@ -76,23 +84,18 @@ function instructionsText(){
 
   textSize(30);
   fill(255);
-  text("Move the mouse side to side to move the paddle.", 400, 100);
-  text("Hit the green balls with the paddle to increase score", 400, 150);
-  text("If you hit a red ball, your score will decrease", 400, 200);
-  text("Once you have removed all the green balls, you win!", 400, 250);
-  text("If your score goes below 0, you lose ", 400, 300);
+  text("Move the mouse side to side to move the paddle.", 400, 300);
+  text("Hit the green balls with the paddle to increase score", 400, 350);
+  text("If you hit a red ball, your score will decrease", 400, 400);
+  text("Once you have removed all the green balls, you win!", 400, 450);
+  text("If your score goes below 0, you lose ", 400, 500);
 
-  fill(255)
-  rect(150, 600, 500, 100);
+  btnBTMI.render();
   fill(0);
   textSize(50);
   text("Back to Main Menu", 400, 675)
 
-  if(mouseIsPressed&&
-    mouseX>150&&
-    mouseX<650&&
-    mouseY>600&&
-    mouseY<700){
+  if(btnBTMI.isClicked()=== true){
       gameState = 1;
     }
 }
@@ -125,8 +128,7 @@ function endGame(){ //
     text ("YOU LOSE", 400, 250);
   }
 
-fill (255);
-rect (100, 600, 200, 100);
+btnReplay.render();
 fill(0);
 textSize(40);
 text ("REPLAY", 200, 645);
@@ -136,13 +138,13 @@ text ("LEVEL", 200, 685)
 
 
 function checkDifficulty(){
-  if (mouseIsPressed &&mouseX > 50 && mouseX < 250 && mouseY > 450 && mouseY < 650){
+  if (btnEasy.isClicked()=== true){
      difficulty = 'easy';
    }
- if (mouseIsPressed &&mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 650){
+ if (btnMed.isClicked()===true){
     difficulty = 'medium';
     //gameState =2;
-  } if (mouseIsPressed && mouseX > 550 && mouseX < 750 && mouseY > 450 && mouseY < 650){
+  } if (btnHard.isClicked()=== true){
     difficulty = 'hard';
   //  gameState =2;
   }
