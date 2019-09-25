@@ -126,9 +126,11 @@ function endGame(){ //
   }
 
 fill (255);
-textSize(60);
-rect (200, 600, 200, 100);
-text ("REPLAY LEVEL", 200, 630);
+rect (100, 600, 200, 100);
+fill(0);
+textSize(40);
+text ("REPLAY", 200, 645);
+text ("LEVEL", 200, 685)
 
 } //easy
 
