@@ -35,7 +35,8 @@ btnMed = new Button(300, 450, 200, 200, color (250,250,7));
 btnHard = new Button(550, 450, 200, 200, color(250, 0, 0));
 btnInstructions = new Button (200, 700, 400, 74, color(255));
 btnBTMI = new Button (150, 150, 500, 100, color(255));
-btnReplay = new Button (100, 600, 200, 100, color (255));
+btnReplay = new Button (66, 100, 300, 100, color (255));
+btnBTME = new Button (432, 100, 300, 100, color(255));
 }
 
 
@@ -84,16 +85,16 @@ function instructionsText(){
 
   textSize(30);
   fill(255);
-  text("Move the mouse side to side to move the paddle.", 400, 300);
-  text("Hit the green balls with the paddle to increase score", 400, 350);
-  text("If you hit a red ball, your score will decrease", 400, 400);
-  text("Once you have removed all the green balls, you win!", 400, 450);
-  text("If your score goes below 0, you lose ", 400, 500);
+  text("Move the mouse side to side to move the paddle.", 400, 350);
+  text("Hit the green balls with the paddle to increase score", 400, 400);
+  text("If you hit a red ball, your score will decrease", 400, 450);
+  text("Once you have removed all the green balls, you win!", 400, 500);
+  text("If your score goes below 0, you lose ", 400, 550);
 
   btnBTMI.render();
   fill(0);
   textSize(50);
-  text("Back to Main Menu", 400, 675)
+  text("Back to Main Menu", 400, 215);
 
   if(btnBTMI.isClicked()=== true){
       gameState = 1;
@@ -120,21 +121,28 @@ function endGame(){ //
   if (win === 'yes'){
     textSize(80);
     fill (255);
-    text ("YOU WIN", 400, 250);
-    text ("SCORE:" + score, 400, 350);
+    text ("YOU WIN", 400, 450);
+    text ("SCORE:" + score, 400, 550);
   }else if (win === 'no'){
-    textSize(80);
+    textSize(100);
     fill (255);
-    text ("YOU LOSE", 400, 250);
+    text ("YOU LOSE", 400, 500);
   }
 
 btnReplay.render();
+btnBTME.render();
 fill(0);
 textSize(40);
-text ("REPLAY", 200, 645);
-text ("LEVEL", 200, 685)
+text ("REPLAY", 220, 145);
+text ("LEVEL", 220, 185)
+text ("BACK TO", 580, 145);
+text("MAIN MENU", 580, 185);
+if (btnBTME.isClicked()){
+  gameState = 1;
+}
+}
 
-} //easy
+ //easy
 
 
 function checkDifficulty(){
@@ -148,6 +156,7 @@ function checkDifficulty(){
     difficulty = 'hard';
   //  gameState =2;
   }
+
 }
 function loadObjects(x){
   paddle = new Paddle (400, 500, 150, 40);
