@@ -139,7 +139,6 @@ text ("LEVEL", 220, 185)
 text ("BACK TO", 580, 145);
 text("MAIN MENU", 580, 185);
 if (btnBTME.isClicked()){
-clearEverything();
   gameState = 1;
 }
 if (btnReplay.isClicked()=== true){
