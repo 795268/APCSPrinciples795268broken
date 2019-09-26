@@ -81,7 +81,7 @@ gameState = 2;
 }
 }// end start game
 
-function instructionsText(){
+function instructionsText(){ //code for instructions page
 
   textSize(30);
   fill(255);
@@ -96,7 +96,7 @@ function instructionsText(){
   textSize(50);
   text("Back to Main Menu", 400, 215);
 
-  if(btnBTMI.isClicked()=== true){
+  if(btnBTMI.isClicked()=== true){ // back to main menu
       gameState = 1;
     }
 }
@@ -105,12 +105,12 @@ function instructionsText(){
 function playGame(){
   fill (255);
   textSize (40);
-  text ("SCORE:" + score, 100 , 50);
+  text ("SCORE:" + score, 100 , 50); // display score
   runObjects();
-  if (checkRed() === true|| balls.length ===0){
+  if (checkRed() === true|| balls.length ===0){ // if all the red balls are gone, win
     gameState= 4;
     win = 'yes';
-  } else if( score < 0 ){
+  } else if( score < 0 ){ // if negative score, lose
     gameState = 4;
     win = 'no';
   }
@@ -131,6 +131,7 @@ function endGame(){ //
 
 btnReplay.render();
 btnBTME.render();
+
 fill(0);
 textSize(40);
 text ("REPLAY", 220, 145);
@@ -138,7 +139,11 @@ text ("LEVEL", 220, 185)
 text ("BACK TO", 580, 145);
 text("MAIN MENU", 580, 185);
 if (btnBTME.isClicked()){
+clearEverything();
   gameState = 1;
+}
+if (btnReplay.isClicked()=== true){
+  clearEverything();
 }
 }
 
@@ -171,7 +176,7 @@ for(var i = 0; i < balls.length; i++){
     balls[i].run();
 }
 }
-function checkRed(){
+function checkRed(){ // to  check when all the green balls are gone
   var numRed = 0;
   for (var i = 0 ; i < balls.length; i++){
    if (balls[i].getID()% 2===0){
@@ -181,4 +186,8 @@ numRed++;     }
     return true;
   }
 
+}
+function clearEverything() { //
+  gameState = 1;
+  score = 0 ;
 }
