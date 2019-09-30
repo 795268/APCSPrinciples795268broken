@@ -137,6 +137,7 @@ function endGame(){ //end game screen
   if (btnBTME.isClicked()){ // go back to main menu
     gameState = 1;
     difficulty = 'startOver';
+    clearEverything(); 
   }
   if (btnReplay.isClicked()=== true){ // replay level
     clearEverything();
