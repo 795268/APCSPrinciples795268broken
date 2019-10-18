@@ -23,9 +23,12 @@ function draw() {
 
 function bubbleSort(nums){
   console.log(nums);
-  for(var j = nums.length; j > 0 ; j --){ //moves end limit
-for (var i = 0 ; i < nums.length; i ++){
-swap(i);
+  for(var i = nums.length -1; i > 0 ; i --){ //moves end limit
+    for (var j = 0 ; j < nums.length; j ++){
+      if (nums[j] < nums[j-1]){
+        swap(nums, j, j-1);
+
+      }
   }
 
 }
@@ -33,10 +36,8 @@ console.log(nums); //prints sorted array to console
 
 }
 
-function swap(i){
-  if (nums[i+1] < nums [i]){
-    var temp = nums[i];
-    nums[i] = nums[i+1];
-    nums[i+1] = temp;
-  }
+function swap(nums, a, b){ //swap
+    var temp = nums[a];
+    nums[a] = nums[b];
+    nums[b] = temp;
 }

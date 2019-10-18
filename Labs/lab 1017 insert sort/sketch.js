@@ -23,9 +23,11 @@ function draw() {
 
 function insertSort(nums){
   console.log(nums);
-  for(var j = 1; j < nums.length ; j ++){ //moves end limit
-for (var i = j +1 ; i >0 ; i --){
-swap(i);
+  for(var i = 1; i < nums.length ; i ++){ //moves end limit
+  for (var j = i ; j >0 ; j --){
+  if(nums[j] < nums[j-1]){
+      swap(nums, j , j-1);
+      }
     }
   }
 
@@ -33,10 +35,9 @@ console.log(nums); //prints sorted array to console
 
 }
 
-function swap(i){ //swap
-  if (nums[i+1] < nums [i]){
-    var temp = nums[i];
-    nums[i] = nums[i+1];
-    nums[i+1] = temp;
-  }
+function swap(nums, a, b){ //swap
+
+    var temp = nums[a];
+    nums[a] = nums[b];
+    nums[b] = temp;
 }
