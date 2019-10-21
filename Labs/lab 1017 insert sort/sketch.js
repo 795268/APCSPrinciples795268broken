@@ -2,7 +2,7 @@
 // 	10/ 17 insert sort
 //  This is a comment
 //  The setup function function is called once when your program begins
-var nums ;
+var nums=[0] ;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -38,8 +38,7 @@ function swap(nums, a, b){ //swap
     nums[b] = temp;
 }
 
-function median (nums){
-
+function median (nums){ //finds median of list
 if (nums.length % 2 === 0){ //if the list has an even number of elements
  var half = nums.length/2;
  var med = nums[half] + nums[half+1];
