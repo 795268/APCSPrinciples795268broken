@@ -19,48 +19,30 @@ function setup() {
 function draw() {
 }
 
-function mergeSort(nums, n ){ // uses merge sort
-       n = nums.length;
-       if (n < 2){
-           return;
-       } // base case
-       var mid = n/2;
-       var l = []; // one half of array
-       var r = []; // other half of array
-       for(var i = 0; i < mid; i++){
-           l.push(nums[i]); // initializes array
-       }
-       for(var i = mid; i < n; i++){
-           r.push(nums[i]); // initializes array
-       }
 
-       // recursive part
-       mergeSort(l, mid);
-       mergeSort(r, n - mid);
-       // to merge the smaller arrays
-       merge(nums, l, r, mid, n - mid);
-   }
 
-function merge(nums, l, r, var left, var right){
-       // merge method for merge sort
-       // instance variables to keep track of index within array
-       var i = 0;
-       var j = 0;
-       var k = 0;
-       while(i < left && j < right){
-           // runs through array until reaching the end (middle)
-           if(l[i] <= r[i]){
-              // a.set(k++, l.get(i++)); // adds the left value to the array
-               nums[k++] = l[i++];
-           } else {
-               //a.set(k++, r.get(j++)); // adds the right value to the array
-               nums[k++] = r[j++]; 
-           }
-       }
-       while(i < left) {
-           a.set(k++, l.get(i++)); // incrementation
-       }
-       while(j < right) {
-           a.set(k++, r.get(j++)); // incrementation
-       }
-   }
+
+function merge(left, right) {
+  var arr = [];
+
+  while (left.length>0 && right.length>0) {
+    if (left[0] < right[0]) {
+      arr.push(left.shift());
+    } else {
+      arr.push(right.shift());
+    }
+  }
+  return arr.concat(left.slice().concat(right.slice()));
+}
+
+function mergeSort(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  var middle = Math.floor(arr.length / 2);
+  var left = arr.slice(0, middle);
+  var right = arr.slice(middle);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
