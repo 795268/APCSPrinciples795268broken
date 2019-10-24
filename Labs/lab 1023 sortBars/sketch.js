@@ -2,23 +2,32 @@
 // 	10/ 17 insert sort
 //  This is a comment
 //  The setup function function is called once when your program begins
-var nums=[0] ;
+var bars=[0] ;
 
 function setup() {
-  var cnv = createCanvas(800, 800);
+  var cnv = createCanvas(780, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
 
-  for (var x = 0; x<10; x++){ //load array with random varegers
-    nums[x] = Math.floor(random(20));
-  }
 
 }
 
 function draw() {
+  runBars();
 }
 
+function loadBars(){
+  for (var i = 0; i< 26; i++){
+    bars[i]= new Bar(i*20, Math.floor(random(100, 700)));
+  }
+}
+
+function runBars(){
+  for (var i = 0; i< 26; i++){
+    bars[i].render();
+  }
+}
 
 
 
