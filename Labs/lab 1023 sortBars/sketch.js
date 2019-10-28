@@ -11,14 +11,15 @@ function setup() {
   background(5, 5, 5);
   fill(200, 30, 150);
   loadBars();
-  frameRate(10);
-  for (var i = 0; i<bars.length; i++){
-    bars[i].run();
-  }
+  frameRate(3);
+  runBars();
+
 }
 
 function draw() {
-selectionSort(bars);
+selectionSort();
+//update();
+runBars();
 }
 
 function loadBars(){
@@ -29,29 +30,35 @@ function loadBars(){
     bars[i]= new Bar(i*barWidth, height-barHeight, barWidth, barHeight);
   }
 }
+function runBars(){
+  for (var i = 0; i<bars.length; i++){
+    bars[i].run();
+  }
+}
 
 function  update(){
   for(var i=0; i<bars.length; i++){
     bars[i].set(i);
   }
   background(0);
-  for (var i =0; i<bars.length; i++){
-    bars[i].run();
-  }
+  runBars();
 }
 
 function selectionSort(arr){
-  for(var i = 0; i < arr.length-1; i ++){ //moves end limit
+  for(var i = 0; i < bars.length-1; i ++){ //moves end limit
       var small = i;
-  for (var j = i+1 ; j < arr.length ; j++){
-      if(arr[j].getHeight() < arr[small].getHeight()){
+  for (var j = i+1 ; j < bars.length ; j++){
+      if(bars[j].getHeight() < bars[small].getHeight()){
           small = j;
           }
         }
-        swap(arr, i , small);
+        swap(bars, i , small);
         update();
+        runBars();
       }
-
+// background(5,5,5);
+// frameRate(3);
+// runBars();
   }
 
 function swap(arr, a, b){ //swap
