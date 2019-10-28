@@ -10,15 +10,14 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-
-loadBars();
+  loadBars();
+  frameRate(10);
+  for (var i = 0; i<bars.length; i++){
+    bars[i].run();
+  }
 }
 
 function draw() {
-  frameRate(10);
-  for (var i = 0; i<bars.length; i++){
-    bars[i].render();
-  }
 selectionSort(bars);
 }
 
@@ -34,7 +33,11 @@ function loadBars(){
 function  update(){
   for(var i=0; i<bars.length; i++){
     bars[i].set(i);
-}
+  }
+  background(0);
+  for (var i =0; i<bars.length; i++){
+    bars[i].run();
+  }
 }
 
 function selectionSort(arr){
