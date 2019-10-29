@@ -43,6 +43,7 @@ function  update(){
 }
 
 function bubbleSort(){
+
   for (var j = 0; j < bars.length-1; j++){
     if (bars[j].getHeight()> bars[j+1].getHeight()){
     swap(bars, j, j+1);
