@@ -11,15 +11,13 @@ function setup() {
   background(5, 5, 5);
   fill(200, 30, 150);
   loadBars();
-  frameRate(3);
+  frameRate(5);
   runBars();
 
 }
 
 function draw() {
-selectionSort();
-//update();
-runBars();
+bubbleSort();
 }
 
 function loadBars(){
@@ -44,22 +42,14 @@ function  update(){
   runBars();
 }
 
-function selectionSort(arr){
-  for(var i = 0; i < bars.length-1; i ++){ //moves end limit
-      var small = i;
-  for (var j = i+1 ; j < bars.length ; j++){
-      if(bars[j].getHeight() < bars[small].getHeight()){
-          small = j;
-          }
-        }
-        swap(bars, i , small);
-        update();
-        runBars();
-      }
-// background(5,5,5);
-// frameRate(3);
-// runBars();
+function bubbleSort(){
+  for (var j = 0; j < bars.length-1; j++){
+    if (bars[j].getHeight()> bars[j+1].getHeight()){
+    swap(bars, j, j+1);
+    update();
+    }
   }
+}
 
 function swap(arr, a, b){ //swap
     var temp = arr[a];
