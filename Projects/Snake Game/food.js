@@ -11,7 +11,7 @@ run(){
 
 render(){
     fill(this.clr);
-    rect(this.loc.x, this.loc.y, 15, 15);
+    rect(this.loc.x, this.loc.y, 30, 30);
 
 }
 
