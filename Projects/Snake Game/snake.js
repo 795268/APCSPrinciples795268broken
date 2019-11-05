@@ -15,27 +15,28 @@ class Snake{
   } //end run
 
   update(){
-    bodySegments[0].x = this.loc.x;
-    bodySegments[0].y = this.loc.y;
-
-    for(var i = bodySegments.length - 1; i >= 1; i--){
-        bodySegments[i].x = this.segments[i - 1].x;
-        bodySegments[i].y = this.segments[i - 1].y;
-      }
-
- this.loc.add(this.vel);
- this.loc.x = constrain(this.loc.x, 0, width-this.w);
- this.loc.y = constrain(this.loc.y, 0, width-this.w);
-
- //once snake eats food then add a segment and move food location
- if(this.loc.dist(food.loc) === 0){
-   bodySegments.push(createVector(0,0));
-   for(i = 0; i < bodySegments.length; i++){
-     if(food.loc != bodySegments[i].loc){
-       food.loc = createVector(width / 2 - Math.floor(Math.random()*16-8)*this.w, height / 2+Math.floor(Math.random()*12-6)*this.w);
-     }
-   }
- }
+    this.keyPressed();
+ //    bodySegments[0].x = this.loc.x;
+ //    bodySegments[0].y = this.loc.y;
+ //
+ //    for(var i = bodySegments.length - 1; i >= 1; i--){
+ //        bodySegments[i].x = this.segments[i - 1].x;
+ //        bodySegments[i].y = this.segments[i - 1].y;
+ //      }
+ //
+ // this.loc.add(this.vel);
+ // this.loc.x = constrain(this.loc.x, 0, width-this.w);
+ // this.loc.y = constrain(this.loc.y, 0, width-this.w);
+ //
+ // //once snake eats food then add a segment and move food location
+ // if(this.loc.dist(food.loc) === 0){
+ //   bodySegments.push(createVector(0,0));
+ //   for(i = 0; i < bodySegments.length; i++){
+ //     if(food.loc != bodySegments[i].loc){
+ //       food.loc = createVector(width / 2 - Math.floor(Math.random()*16-8)*this.w, height / 2+Math.floor(Math.random()*12-6)*this.w);
+ //     }
+ //   }
+ // }
 
   }//end update
 
@@ -59,4 +60,20 @@ class Snake{
       }
     }
   }
+
+   keyPressed(){
+    if(keyCode === UP_ARROW){
+      this.loc.y = this.loc.y - this.w;
+    }
+    if(keyCode === DOWN_ARROW){
+      this.loc.y = this.loc.y + this.w;
+    }
+    if(keyCode === LEFT_ARROW){
+      this.loc.x = this.loc.x - this.w;
+    }
+    if(keyCode === RIGHT_ARROW){
+      this.loc.x = this.loc.x + this.w;
+    }
+
+  }//end keyPressed
 } //++++++++++++++++ End Snake

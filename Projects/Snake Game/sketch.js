@@ -6,7 +6,7 @@
 var snake, score, food, header_height;
 var bodySegments = [];
 function setup() {
-  var cnv = createCanvas(800, 800);
+  var cnv = createCanvas(800, 600);
   cnv.position((windowWidth-width)/2, 30);
   background(217, 189, 124);
   header_height = 800;
@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw(){
-  snake.render();
+  snake.run();
   food.render();
   if (checkTangled === true){
     newGame();
@@ -37,21 +37,7 @@ function checkTangled(){
 function startNewRound(){
 
 }
-function keyPressed(){
-  if(keyCode === UP_ARROW){
-    //MOVE SNAKE ONE SQUARE UP
-  }
-  if(keyCode === DOWN_ARROW){
-    //MOVE SNAKE ONE SQUARE DOWN
-  }
-  if(keyCode === LEFT_ARROW){
-    //MOVE SNAKE ONE SQUARE LEFT
-  }
-  if(keyCode === RIGHT_ARROW){
-    //MOVE SNAKE ONE SQUARE RIGHT
-  }
 
-}//end keyPressed
 function run(){
   snake.update();
   snake.render();
