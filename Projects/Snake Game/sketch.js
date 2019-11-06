@@ -3,8 +3,10 @@
 //  The setup function function is called once when your program begins
 
 
-var snake, score, food, header_height;
-var bodySegments = [];
+var score, header_height;
+var gameState = 1;
+var snake = [];
+var food = [];
 function setup() {
   var cnv = createCanvas(800, 600);
   cnv.position((windowWidth-width)/2, 30);
@@ -14,22 +16,57 @@ function setup() {
 }
 
 function draw(){
-  snake.run();
-  food.render();
-  if (checkTangled === true){
-    newGame();
+    background(5,5,5);
+    if (gameState ===1){
+      startGame(); //start screen
+    }else if (gameState === 2){
+      playGame(); //game screen
+    }else if (gameState === 3){
+      instructionsText();
+    }else if (gameState === 4){ //game over screen
+      endGame();
   }
-  if (getFood === true ){
-    startNewRound();
+}
+
+function startGame(){
+  loadObjects(2);
+  if (mouseIsPressed()){
+    gameState=2;
   }
-}// end draw
+}
+
+function playGame(){
+  runObjects();
+}
+
+function loadObjects(n){
+  for(var i = 0; i< snake.length; i++){
+    snake[i] = new Snake (random(50, 750), random(50, 750),30, color(227, 69, 7), i);
+    }
+  for (var j = 0; j < n; j++){
+    food[j] = new Food (random (300,500), random (300,500), color(70));
+    }
+}
+
+function runObjects(){
+  for(var i = 0; i< snake.length; i++){
+    snake[i].run();
+  }
+  for(var i = 0; i< food.length; i++){
+    food[i].run();
+  }
+}
+  // snake.run();
+  // food.render();
+  // if (checkTangled === true){
+  //   newGame();
+  // }
+  // if (getFood === true ){
+  //   startNewRound();
+  //}
+//}// end draw
 
 function newGame(){ //create snake and food objects
-  score = 0;
-  snake = new Snake (random(50, 750), random(50, 750),30, color(227, 69, 7));
-  food = new Food (random (300,500), random (300,500), color(70));
-
-
 }
 function checkTangled(){
   return snake.tangled();
@@ -38,25 +75,7 @@ function startNewRound(){
 
 }
 
-function run(){
-  snake.update();
-  snake.render();
 
-}
 function getFood() {
 
-}
-
-function runObjects(){
-  head.run();
-}
-
-
-
-
-function move(){
-  if(keyCode === UP_ARROW){
-    head.position(5,5);
-
-  }
 }

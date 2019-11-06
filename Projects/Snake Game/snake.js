@@ -1,11 +1,12 @@
 //Elena Campell
 
 class Snake{
-  constructor(x, y,w, c){
+  constructor(x, y,w, c, id){
     this.loc=createVector(x,y);
     this.vel = createVector(0,0);
     this.w = 30;
     this.clr = c;
+    this.id = id;
 
   }// end constructor
 
@@ -76,4 +77,10 @@ class Snake{
     }
 
   }//end keyPressed
+
+  isHead(){
+    if (this.id === 0){
+      return true;
+    }
+  }
 } //++++++++++++++++ End Snake
