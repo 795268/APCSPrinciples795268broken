@@ -3,20 +3,20 @@
 //  The setup function function is called once when your program begins
 
 
-var score, header_height;
+var score, header_height, snake, difficulty;
 var gameState = 1;
-var snake = [];
 var food = [];
+var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
 function setup() {
-  var cnv = createCanvas(800, 600);
+  var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(217, 189, 124);
   header_height = 800;
-  newGame();
+  loadObjects(2);
+
 }
 
 function draw(){
-    background(5,5,5);
     if (gameState ===1){
       startGame(); //start screen
     }else if (gameState === 2){
@@ -28,11 +28,42 @@ function draw(){
   }
 }
 
+function newButton(){
+  btnEasy = new Button(50, 450, 200, 200, color(78, 219, 18) );
+  btnMed = new Button(300, 450, 200, 200, color (250,250,7));
+  btnHard = new Button(550, 450, 200, 200, color(250, 0, 0));
+}
+
 function startGame(){
-  loadObjects(2);
-  if (mouseIsPressed()){
-    gameState=2;
-  }
+  textSize(80);
+  fill(255);
+  textAlign(RIGHT);
+  text ("SNAKE", 400, 200); //title
+  textAlign(CENTER);
+  text ("GAME", 400, 300);
+
+  btnEasy.render(); //draws buttons
+  btnMed.render();
+  btnHard.render();
+
+  textSize (60); //text for buttons
+  fill(255);
+  text ("EASY", 55, 525, 200, 200);
+  text ("HARD", 560, 525, 200, 200);
+  textSize(45);
+  text ("MEDIUM", 305, 530, 200, 200);
+
+    checkDifficulty(); // checks which difficulty is chosen
+    if (difficulty === 'easy' || difficulty === 'medium'|| difficulty === 'hard'){
+      if (difficulty === 'easy'){
+        loadObjects(5);
+      }else if (difficulty === 'medium'){
+        loadObjects (15);
+      }else if (difficulty === 'hard'){
+        loadObjects (20);
+      }
+      gameState = 2; // play game
+}
 }
 
 function playGame(){
@@ -40,18 +71,15 @@ function playGame(){
 }
 
 function loadObjects(n){
-  for(var i = 0; i< snake.length; i++){
-    snake[i] = new Snake (random(50, 750), random(50, 750),30, color(227, 69, 7), i);
-    }
+    snake = new Snake (random(50, 750), random(50, 750),30, color(227, 69, 7));
   for (var j = 0; j < n; j++){
     food[j] = new Food (random (300,500), random (300,500), color(70));
     }
 }
 
 function runObjects(){
-  for(var i = 0; i< snake.length; i++){
-    snake[i].run();
-  }
+    snake.run();
+
   for(var i = 0; i< food.length; i++){
     food[i].run();
   }
@@ -78,4 +106,15 @@ function startNewRound(){
 
 function getFood() {
 
+}
+
+function checkDifficulty(){ //check which difficulty button is isClicked
+  if (btnEasy.isClicked()=== true){
+     difficulty = 'easy';
+   }
+ if (btnMed.isClicked()===true){
+    difficulty = 'medium';
+  } if (btnHard.isClicked()=== true){
+    difficulty = 'hard';
+  }
 }
