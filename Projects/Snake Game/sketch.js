@@ -5,7 +5,7 @@
 
 var score, header_height, snake, difficulty;
 var gameState = 1;
-var h = 10; 
+var h = 10;
 var food = [];
 var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
 function setup() {
@@ -68,15 +68,15 @@ function startGame(){
 }
 
 function playGame(){
-  frameRate(10);
+  frameRate(8);
   background(217, 189, 124);
   runObjects();
 }
 
 function loadObjects(n){
-    snake = new Snake (Math.floor(random(10, 26))*30,Math.floor(random (10, 26))*30,30, color(227, 69, 7));
+    snake = new Snake (Math.floor(random(10, 26)*30),Math.floor(random (10, 26)*30),30, color(227, 69, 7));
   for (var j = 0; j < n; j++){
-    food[j] = new Food (Math.floor(random(0, 26))*30, Math.random(random (0, 26))*30, color(70));
+    food[j] = new Food (Math.floor(random(0, 26)*30), Math.floor(random (0, 26)*30), color(70));
     }
 }
 
