@@ -34,7 +34,7 @@ class Snake{
     }
   }
     // update the head
-    this.head.add(this.vel);
+  //  this.head.add(this.vel);
 
 }//end update
 
@@ -71,17 +71,26 @@ class Snake{
   }
 
    keyPressed(){
+     this.head.add(this.vel);
     if(keyCode === UP_ARROW){
-        this.head.y = this.head.y - this.w;
+        this.vel.x = 0;
+        this.vel.y = -20;
     }
     if(keyCode === DOWN_ARROW){
-      this.head.y = this.head.y + this.w;
+      this.vel.x = 0;
+      this.vel.y = 20;
+
+  //    this.head.y = this.head.y + this.w;
       }
     if(keyCode === LEFT_ARROW){
-    this.head.x = this.head.x - this.w;
+      this.vel.y = 0;
+      this.vel.x = -20;
+  //  this.head.x = this.head.x - this.w;
       }
     if(keyCode === RIGHT_ARROW){
-    this.head.x = this.head.x + this.w;
+      this.vel.y = 0;
+      this.vel.x = 20
+  //  this.head.x = this.head.x + this.w;
 
       }
   }//end keyPressed
