@@ -12,7 +12,6 @@ run(){
 
 render(){
     fill(this.clr);
-    rect(this.food.x, this.food.y, 30, 30);
     rect(this.loc.x, this.loc.y, 30, 30);
 }
 
