@@ -5,7 +5,7 @@
 
 var score, header_height, snake, difficulty;
 var gameState = 1;
-var h = 10; 
+var h = 10;
 var food = [];
 var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
 function setup() {
