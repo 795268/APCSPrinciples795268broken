@@ -10,6 +10,10 @@ class Snake{
 
   }// end constructor
 
+  loadBody(){
+    this.body.push(createVector(this.head.x, this.head.y));
+  }
+
   run(){
     this.update();
     this.render();
@@ -19,8 +23,8 @@ class Snake{
     this.keyPressed();
     this.checkEdges();
     for(var i = 0; i< food.length; i++){
-    if(this.head.x === food[i].food.x &&
-       this.head.y === food[i].food.y){
+    if(this.head.x === food[i].loc.x &&
+       this.head.y === food[i].loc.y){
          this.loadSegment();
      }
    }
@@ -34,7 +38,7 @@ class Snake{
     }
   }
     // update the head
-    this.head.add(this.vel);
+  //  this.head.add(this.vel);
 
 }//end update
 
@@ -47,18 +51,8 @@ class Snake{
       rect(this.body[i].x, this.body[i].y, w, w);
    }
  }
-  //   fill(this.clr);
-  //   var row = Math.floor(this.head.x/this.w);
-  //   var col = Math.floor(this.head.y/this.w);
-  //   rect(row*this.w, col*this.w + header_height, 10, 10);
-  //   rect(this.head.x, this.head.y, this.w, this.w );
-  //   // for(var i = 1; i <= bodySegments.length -1; i++){
-  //   //   rect(bodySegments[i].x, bodySegments[i].y, this.w, this.w);
-  //   // }
-  // }//end render
-  loadBody(){
-    this.body.push(createVector(this.head.x, this.head.y));
-  }
+
+
 
   tangled(){
     //for loop checking each segment in the segment array
@@ -71,26 +65,35 @@ class Snake{
   }
 
    keyPressed(){
+     this.head.add(this.vel);
     if(keyCode === UP_ARROW){
-        this.head.y = this.head.y - this.w;
+        this.vel.x = 0;
+        this.vel.y = -30;
     }
     if(keyCode === DOWN_ARROW){
-      this.head.y = this.head.y + this.w;
+      this.vel.x = 0;
+      this.vel.y = 30;
+
+  //    this.head.y = this.head.y + this.w;
       }
     if(keyCode === LEFT_ARROW){
-    this.head.x = this.head.x - this.w;
+      this.vel.y = 0;
+      this.vel.x = -30;
+  //  this.head.x = this.head.x - this.w;
       }
     if(keyCode === RIGHT_ARROW){
-    this.head.x = this.head.x + this.w;
+      this.vel.y = 0;
+      this.vel.x =30
+  //  this.head.x = this.head.x + this.w;
 
       }
   }//end keyPressed
 
   checkEdges(){ //keep snake inside screen
-      if(this.head.x< 0) {this.head.x + this.w}
-      if (this.head.x> width) this.head.x + this.w;
-      if (this.head.y < 0) this.head.y + this.w;
-      if(this.head.y> height) this.head.y - this.w;
+      if(this.head.x< 0) this.vel.x  = -this.vel.x;
+      if (this.head.x> width) this.vel.x  = -this.vel.x;
+      if (this.head.y < 0) this.vel.y  = -this.vel.y;
+      if(this.head.y> height) this.vel.y  = -this.vel.y;
   } //DOESNT WORK!!
 
 
