@@ -26,19 +26,19 @@ class Snake{
     if(this.head.x === food[i].loc.x &&
        this.head.y === food[i].loc.y){
          this.loadSegment();
+         food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
      }
    }
     // update the body
     if(this.body.length>0){
-    for(var i = this.body.length-1; i < 0; i--){
-      this.body[0].x = this.head.x+30;
+      this.body[0].x = this.head.x;
       this.body[0].y = this.head.y+30;
+
+    for(var i = this.body.length; i < 0; i--){
       this.body[i].x = this.body[i-1].x;
       this.body[i].y = this.body[i-1].y;
     }
  }
-    //update the head
-   this.head.add(this.vel);
 
 }//end update
 
@@ -48,7 +48,14 @@ class Snake{
     rect(this.head.x, this.head.y, this.w, this.w);
  // render the body
     for(var i = 0; i < this.body.length; i++){
-      rect(this.body[i].x, this.body[i].y, this.w, this.w);
+      if(i%3 === 0){
+        fill(255);
+        rect(this.body[i].x, this.body[i].y, this.w, this.w);
+      }
+      else if(i%3 !== 0){
+        fill(0);
+        rect(this.body[i].x, this.body[i].y, this.w, this.w);
+      }
    }
  }
 
@@ -89,12 +96,6 @@ class Snake{
       }
   }//end keyPressed
 
-  // checkEdges(){ //keep snake inside screen
-  //     if(this.head.x< 0) this.vel.x  = -this.vel.x;
-  //     if (this.head.x> width) this.vel.x  = -this.vel.x;
-  //     if (this.head.y < 0) this.vel.y  = -this.vel.y;
-  //     if(this.head.y> height) this.vel.y  = -this.vel.y;
-  // } //DOESNT WORK!!
 
 
 

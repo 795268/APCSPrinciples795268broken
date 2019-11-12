@@ -68,15 +68,15 @@ function startGame(){
 }
 
 function playGame(){
-  frameRate(2);
+  frameRate(10);
   background(217, 189, 124);
   runObjects();
 }
 
 function loadObjects(n){
-    snake = new Snake (Math.floor(Math.random()*26)*30,Math.floor(Math.random()*26)*30,30, color(227, 69, 7));
+    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(227, 69, 7));
   for (var j = 0; j < n; j++){
-    food[j] = new Food (Math.floor(Math.random()*26)*30,Math.floor(Math.random()*26)*30, color(70));
+    food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70));
     }
 }
 
