@@ -30,13 +30,13 @@ class Snake{
      }
    }
     // update the body
-    if(this.body.length>0){
-      this.body[0].x = this.head.x;
-      this.body[0].y = this.head.y+30;
-
-    for(var i = this.body.length; i < 0; i--){
+    for (i = this.body.length-1; i>=0; i--){
+    if (i >= 1){
       this.body[i].x = this.body[i-1].x;
       this.body[i].y = this.body[i-1].y;
+   }  if (i === 0){
+      this.body[i].x = this.head.x;
+      this.body[i].y = this.head.y;
     }
  }
 
@@ -48,6 +48,7 @@ class Snake{
     rect(this.head.x, this.head.y, this.w, this.w);
  // render the body
     for(var i = 0; i < this.body.length; i++){
+      
       if(i%3 === 0){
         fill(255);
         rect(this.body[i].x, this.body[i].y, this.w, this.w);
