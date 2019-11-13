@@ -26,6 +26,7 @@ class Snake{
     if(this.head.x === food[i].loc.x &&
        this.head.y === food[i].loc.y){
          this.loadSegment();
+         score++;
          food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
      }
    }
@@ -48,7 +49,7 @@ class Snake{
     rect(this.head.x, this.head.y, this.w, this.w);
  // render the body
     for(var i = 0; i < this.body.length; i++){
-      
+
       if(i%3 === 0){
         fill(255);
         rect(this.body[i].x, this.body[i].y, this.w, this.w);
@@ -64,10 +65,10 @@ class Snake{
 
   tangled(){
     //for loop checking each segment in the segment array
-    for(i = 0; i < bodySegments.length; i++){
+    for(var i = 1; i < this.body.length; i++){
       //if stament checking if the headations are equal to each other
-      if(this.head.x == bodySegments[i].x && this.head.y == bodySegments[i].y){
-        console.log("Game Over");
+      if(this.head.x == this.body[i].x && this.head.y == this.body[i].y){
+        return true;
       }
     }
   }

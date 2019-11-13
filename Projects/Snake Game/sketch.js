@@ -3,9 +3,10 @@
 //  The setup function function is called once when your program begins
 
 
-var score, header_height, snake, difficulty;
+var  header_height, snake, difficulty;
 var gameState = 1;
 var h = 10;
+var score = 0;
 var food = [];
 var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
 function setup() {
@@ -71,6 +72,17 @@ function playGame(){
   frameRate(10);
   background(217, 189, 124);
   runObjects();
+  fill(255);
+  textSize(30);
+  text("SCORE:" +score, 100, 50);
+  checkTangled();
+}
+
+function endGame(){
+  background(137,21,21);
+  fill(255);
+  textSize(100);
+  text("GAME OVER", 400, 300);
 }
 
 function loadObjects(n){
@@ -85,31 +97,16 @@ function runObjects(){
 
   for(var i = 0; i< food.length; i++){
     food[i].run();
+    }
   }
-}
-  // snake.run();
-  // food.render();
-  // if (checkTangled === true){
-  //   newGame();
-  // }
-  // if (getFood === true ){
-  //   startNewRound();
-  //}
-//}// end draw
 
-function newGame(){ //create snake and food objects
-}
+
 function checkTangled(){
-  return snake.tangled();
+if (snake.tangled() === true) {
+  gameState = 4;
+    }
 }
-function startNewRound(){
 
-}
-
-
-function getFood() {
-
-}
 
 function checkDifficulty(){ //check which difficulty button is isClicked
   if (btnEasy.isClicked()=== true){
