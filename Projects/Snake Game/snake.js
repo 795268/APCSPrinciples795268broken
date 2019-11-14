@@ -27,6 +27,7 @@ class Snake{
        this.head.y === food[i].loc.y){
          this.loadSegment();
          score++;
+         timerValue = timerValue + 2; 
          food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
      }
    }

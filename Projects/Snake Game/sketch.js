@@ -5,6 +5,7 @@
 
 var  header_height, snake, difficulty;
 var gameState = 1;
+var timerValue = 10;
 var h = 10;
 var score = 0;
 var food = [];
@@ -16,6 +17,8 @@ function setup() {
   header_height = 800;
   loadObjects(2);
   newButton();
+  setInterval(timeIt, 1000);
+
 }
 
 function draw(){
@@ -62,11 +65,11 @@ function startGame(){
     checkDifficulty(); // checks which difficulty is chosen
     if (difficulty === 'easy' || difficulty === 'medium'|| difficulty === 'hard'){
       if (difficulty === 'easy'){
-        loadObjects(2);
+        loadObjects(7);
       }else if (difficulty === 'medium'){
         loadObjects (5);
       }else if (difficulty === 'hard'){
-        loadObjects (7);
+        loadObjects (2);
       }
       gameState = 2; // play game
     }
@@ -80,6 +83,20 @@ function playGame(){
   textSize(30);
   text("SCORE:" +score, 100, 50);
   checkTangled();
+  if (timerValue >= 10) {
+    text("0:" + timerValue, 100, 100);
+  }
+  if (timerValue < 10) {
+    text('0:0' + timerValue, 100, 100);
+  }
+  if (timerValue == 0) {
+    gameState = 4;
+  }
+}
+function timeIt() {
+  if (timerValue > 0) {
+    timerValue--;
+  }
 }
 
 function endGame(){ //end game screen
@@ -87,16 +104,6 @@ function endGame(){ //end game screen
   fill(255);
   textSize(100);
   text("GAME OVER", 400, 500);
-  // if (win === 'yes'){
-  //   textSize(80);
-  //   fill (255);
-  //   text ("YOU WIN", 400, 450);
-  //   text ("SCORE:" + score, 400, 550);
-  // }else if (win === 'no'){
-  //   textSize(100);
-  //   fill (255);
-  //   text ("YOU LOSE", 400, 500);
-  // }
 
   btnReplay.render();
   btnBTME.render();
@@ -141,6 +148,9 @@ if (snake.tangled() === true) {
 function clearEverything() { //clear gamestate and score for restarting level
   gameState = 1;
   score = 0 ;
+  timerValue = 10;
+  food = [];
+
 }
 
 function checkDifficulty(){ //check which difficulty button is isClicked
