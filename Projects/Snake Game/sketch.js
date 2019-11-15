@@ -18,7 +18,6 @@ function setup() {
   loadObjects(2);
   newButton();
   setInterval(timeIt, 1000);
-
 }
 
 function draw(){
