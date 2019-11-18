@@ -3,13 +3,18 @@
 //  The setup function function is called once when your program begins
 
 
-var  header_height, snake, difficulty;
+var  header_height, snake, difficulty, setting
 var gameState = 1;
 var timerValue = 10;
 var h = 10;
 var score = 0;
 var food = [];
-var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay;
+var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay, bDesert, bWater, bVolcano, bForest;
+
+// function preload(){
+//   soundFormats('mp3');
+//   crunch = loadSound('crunch.mp3');
+// }
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
@@ -18,31 +23,59 @@ function setup() {
   loadObjects(2);
   newButton();
   setInterval(timeIt, 1000);
+  //crunch.setVolume(1);
+  // crunch.play();
 }
 
 function draw(){
     if (gameState ===1){
-      startGame(); //start screen
+      setBackground(); //start screen
     }else if (gameState === 2){
-      playGame(); //game screen
+      startGame()
     }else if (gameState === 3){
-      instructionsText();
+      playGame();
     }else if (gameState === 4){ //game over screen
       endGame();
   }
 }
 
 function newButton(){
-  btnEasy = new Button(50, 450, 200, 200, color(78, 219, 18) );
-  btnMed = new Button(300, 450, 200, 200, color (250,250,7));
-  btnHard = new Button(550, 450, 200, 200, color(250, 0, 0));
+  btnEasy = new Button(50, 500, 200, 200, color(78, 219, 18) );
+  btnMed = new Button(300, 500, 200, 200, color (250,250,7));
+  btnHard = new Button(550, 500, 200, 200, color(250, 0, 0));
   btnReplay = new Button (66, 100, 300, 100, color (255));
   btnBTME = new Button(432, 100, 300, 100, color(255));
+  bDesert = new Button(150, 150, 200, 200, color (217, 189, 124));
+  bWater = new Button(450, 150 ,200, 200, color(84, 195, 232));
+  bVolcano = new Button (150, 450, 200, 200, color (199, 57, 14));
+  bForest = new Button (450, 450, 200, 200, color (21, 163, 40 ));
 
 }
 
+function setBackground(){
+  background(0);
+  bWater.render();
+  bDesert.render();
+  bVolcano.render();
+  bForest.render();
+
+  if(bWater.isClicked()) setting = 'w';
+  else if (bDesert.isClicked()) setting = 'd';
+  else if (bVolcano.isClicked()) setting = 'v';
+  else if (bForest.isClicked()) setting = 'f';
+
+  if (bWater.isClicked() || bDesert.isClicked() ||
+  bVolcano.isClicked() || bForest.isClicked()){
+    gameState =2;
+  }
+
+  }
+
 function startGame(){
-  background(217, 189, 124);
+  if (setting === 'w')background(84, 195, 232);
+  else if (setting === 'd') background(217, 189, 124);
+  else if (setting === 'v') background(199, 57, 14);
+  else if (setting === 'f') background(21, 163, 40 );
   textSize(80);
   fill(255);
   textAlign(RIGHT);
@@ -70,7 +103,7 @@ function startGame(){
       }else if (difficulty === 'hard'){
         loadObjects (2);
       }
-      gameState = 2; // play game
+      gameState = 3; // play game
     }
 }
 
