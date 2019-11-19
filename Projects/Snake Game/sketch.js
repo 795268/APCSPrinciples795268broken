@@ -5,7 +5,7 @@
 
 var  header_height, snake, difficulty, setting
 var gameState = 1;
-var timerValue = 10;
+var timerValue = 15;
 var h = 10;
 var score = 0;
 var food = [];
@@ -40,20 +40,23 @@ function draw(){
 }
 
 function newButton(){
-  btnEasy = new Button(50, 500, 200, 200, color(78, 219, 18) );
-  btnMed = new Button(300, 500, 200, 200, color (250,250,7));
-  btnHard = new Button(550, 500, 200, 200, color(250, 0, 0));
+  btnEasy = new Button(50, 300, 200, 200, color(78, 219, 18) );
+  btnMed = new Button(300, 300, 200, 200, color (250,250,7));
+  btnHard = new Button(550, 300, 200, 200, color(250, 0, 0));
   btnReplay = new Button (66, 100, 300, 100, color (255));
   btnBTME = new Button(432, 100, 300, 100, color(255));
-  bDesert = new Button(150, 150, 200, 200, color (217, 189, 124));
-  bWater = new Button(450, 150 ,200, 200, color(84, 195, 232));
-  bVolcano = new Button (150, 450, 200, 200, color (199, 57, 14));
-  bForest = new Button (450, 450, 200, 200, color (21, 163, 40 ));
+  bDesert = new Button(0, 0, 200, 200, color (217, 189, 124));
+  bWater = new Button(600, 0 ,200, 200, color(84, 195, 232));
+  bVolcano = new Button (0, 600, 200, 200, color (199, 57, 14));
+  bForest = new Button (600, 600, 200, 200, color (21, 163, 40 ));
 
 }
 
 function setBackground(){
   background(0);
+  fill(255);
+  textSize(100);
+  text("SNAKE GAME", 70, 420);
   bWater.render();
   bDesert.render();
   bVolcano.render();
@@ -76,12 +79,6 @@ function startGame(){
   else if (setting === 'd') background(217, 189, 124);
   else if (setting === 'v') background(199, 57, 14);
   else if (setting === 'f') background(21, 163, 40 );
-  textSize(80);
-  fill(255);
-  textAlign(RIGHT);
-  text ("SNAKE", 400, 200); //title
-  textAlign(CENTER);
-  text ("GAME", 400, 300);
 
   btnEasy.render(); //draws buttons
   btnMed.render();
@@ -89,7 +86,7 @@ function startGame(){
 
   textSize (60); //text for buttons
   fill(255);
-  text ("EASY", 55, 525, 200, 200);
+  text ("EASY", 65, 525, 200, 200);
   text ("HARD", 560, 525, 200, 200);
   textSize(45);
   text ("MEDIUM", 305, 530, 200, 200);
@@ -109,8 +106,10 @@ function startGame(){
 
 function playGame(){
   frameRate(10);
-  background(217, 189, 124);
-  runObjects();
+  if (setting === 'w')background(84, 195, 232);
+  else if (setting === 'd') background(217, 189, 124);
+  else if (setting === 'v') background(199, 57, 14);
+  else if (setting === 'f') background(21, 163, 40 );  runObjects();
   fill(255);
   textSize(30);
   text("SCORE:" +score, 100, 50);
@@ -132,6 +131,7 @@ function timeIt() {
 }
 
 function endGame(){ //end game screen
+  textAlign(CENTER);
   background(137,21,21);
   fill(255);
   textSize(100);
@@ -157,10 +157,32 @@ function endGame(){ //end game screen
   }
 
 function loadObjects(n){
-    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(227, 69, 7));
-  for (var j = 0; j < n; j++){
-    food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70));
+  if (setting === 'w') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(133, 6, 153));
+  else if (setting === 'd')  snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(227, 69, 7));
+  else if (setting === 'v') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(0));
+  else if (setting === 'f') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(255, 34, 0));
+
+  if (setting === 'w'){
+    for (var j = 0; j < n; j++){
+      food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(80, 242,167));
+      }
+  }
+  else if (setting === 'd') {
+    for (var j = 0; j < n; j++){
+      food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70));
+      }
+  }
+  else if (setting === 'v') {
+    for (var j = 0; j < n; j++){
+      food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(235, 235,40));
+      }
+  }
+  else if (setting === 'f') for (var j = 0; j < n; j++){
+    for (var j = 0; j < n; j++){
+    food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(240, 31, 35));
     }
+}
+
 }
 
 function runObjects(){

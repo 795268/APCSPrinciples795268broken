@@ -27,7 +27,7 @@ class Snake{
        this.head.y === food[i].loc.y){
          this.loadSegment();
          score++;
-         timerValue = timerValue + 2; 
+         timerValue = timerValue + 2;
          food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
      }
    }
@@ -56,7 +56,7 @@ class Snake{
         rect(this.body[i].x, this.body[i].y, this.w, this.w);
       }
       else if(i%3 !== 0){
-        fill(0);
+        fill(this.clr);
         rect(this.body[i].x, this.body[i].y, this.w, this.w);
       }
    }
