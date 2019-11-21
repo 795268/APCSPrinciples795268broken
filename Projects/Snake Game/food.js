@@ -26,4 +26,4 @@ update(){
 
 
 
-}// end loc class
+}// end food class

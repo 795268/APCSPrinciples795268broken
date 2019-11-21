@@ -28,7 +28,22 @@ class Snake{
          this.loadSegment();
          score++;
          timerValue = timerValue + 2;
-         food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
+         if (setting === 'w'){
+           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(80, 242,167)));
+         }
+         else if (setting === 'd') {
+           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70)));
+
+         }
+         else if (setting === 'v') {
+           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(235, 235,40)));
+
+         }
+         else if (setting === 'f') {
+           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(240, 31, 35)));
+         }
+
+
      }
    }
     // update the body
