@@ -15,6 +15,7 @@ var btnEasy, btnMed, btnHard, btnInstructions, btnBTMI, btnBTME, btnReplay, bDes
 //   soundFormats('mp3');
 //   crunch = loadSound('crunch.mp3');
 // }
+
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
@@ -22,24 +23,24 @@ function setup() {
   header_height = 800;
   loadObjects(2);
   newButton();
-  setInterval(timeIt, 1000);
-  //crunch.setVolume(1);
+  setInterval(timeIt, 1000); // for timer
+  // crunch.setVolume(1);
   // crunch.play();
 }
 
 function draw(){
     if (gameState ===1){
-      setBackground(); //start screen
-    }else if (gameState === 2){
+      setBackground(); //chose theme
+    }else if (gameState === 2){ // chose dificulty
       startGame()
-    }else if (gameState === 3){
+    }else if (gameState === 3){// play game
       playGame();
     }else if (gameState === 4){ //game over screen
       endGame();
   }
 }
 
-function newButton(){
+function newButton(){ // creates new button objects
   btnEasy = new Button(50, 300, 200, 200, color(78, 219, 18) );
   btnMed = new Button(300, 300, 200, 200, color (250,250,7));
   btnHard = new Button(550, 300, 200, 200, color(250, 0, 0));
@@ -56,18 +57,19 @@ function setBackground(){
   background(0);
   fill(255);
   textSize(100);
+  textAlign(LEFT);
   text("SNAKE GAME", 70, 420);
   bWater.render();
   bDesert.render();
   bVolcano.render();
   bForest.render();
 
-  if(bWater.isClicked()) setting = 'w';
+  if(bWater.isClicked()) setting = 'w'; // chose theme
   else if (bDesert.isClicked()) setting = 'd';
   else if (bVolcano.isClicked()) setting = 'v';
   else if (bForest.isClicked()) setting = 'f';
 
-  if (bWater.isClicked() || bDesert.isClicked() ||
+  if (bWater.isClicked() || bDesert.isClicked() || // go to next game state
   bVolcano.isClicked() || bForest.isClicked()){
     gameState =2;
   }
@@ -75,7 +77,7 @@ function setBackground(){
   }
 
 function startGame(){
-  if (setting === 'w')background(84, 195, 232);
+  if (setting === 'w')background(84, 195, 232); // color background based on theme
   else if (setting === 'd') background(217, 189, 124);
   else if (setting === 'v') background(199, 57, 14);
   else if (setting === 'f') background(21, 163, 40 );
@@ -112,19 +114,20 @@ function playGame(){
   else if (setting === 'f') background(21, 163, 40 );  runObjects();
   fill(255);
   textSize(30);
-  text("SCORE:" +score, 100, 50);
+  text("SCORE:" +score, 100, 50); // displays the score
   checkTangled();
-  if (timerValue >= 10) {
+  if (timerValue >= 10) { // displays timer
     text("0:" + timerValue, 100, 100);
   }
   if (timerValue < 10) {
     text('0:0' + timerValue, 100, 100);
   }
-  if (timerValue == 0) {
+  if (timerValue == 0) { // if timer gets to zero, game over
     gameState = 4;
   }
 }
-function timeIt() {
+
+function timeIt() { // timer funtion
   if (timerValue > 0) {
     timerValue--;
   }
@@ -152,42 +155,42 @@ function endGame(){ //end game screen
     clearEverything();
   }
   if (btnReplay.isClicked()=== true){ // replay level
-    clearEverything();
+gameState = 2;
+    score = 0 ;
+    timerValue = 10;
+    food = [];
     }
   }
 
-function loadObjects(n){
-  if (setting === 'w') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(133, 6, 153));
-  else if (setting === 'd')  snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(227, 69, 7));
-  else if (setting === 'v') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(0));
-  else if (setting === 'f') snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(255, 34, 0));
-
+function loadObjects(n){ // load different color snake and food based on theme
   if (setting === 'w'){
+    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(133, 6, 153));
     for (var j = 0; j < n; j++){
       food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(80, 242,167));
       }
   }
   else if (setting === 'd') {
+    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(227, 69, 7));
     for (var j = 0; j < n; j++){
       food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(70));
       }
   }
   else if (setting === 'v') {
+    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(0));
     for (var j = 0; j < n; j++){
       food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(235, 235,40));
       }
   }
   else if (setting === 'f') for (var j = 0; j < n; j++){
+    snake = new Snake (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30,30, color(255, 34, 0));
     for (var j = 0; j < n; j++){
-    food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(240, 31, 35));
+      food[j] = new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(250,178,10));
     }
-}
-
+  }
 }
 
 function runObjects(){
     snake.run();
-
   for(var i = 0; i< food.length; i++){
     food[i].run();
     }
@@ -195,16 +198,16 @@ function runObjects(){
 
 
 function checkTangled(){
-if (snake.tangled() === true) {
-  gameState = 4;
+  if (snake.tangled() === true) {
+    gameState = 4;
     }
-}
+  }
+
 function clearEverything() { //clear gamestate and score for restarting level
   gameState = 1;
   score = 0 ;
   timerValue = 10;
   food = [];
-
 }
 
 function checkDifficulty(){ //check which difficulty button is isClicked
@@ -213,7 +216,7 @@ function checkDifficulty(){ //check which difficulty button is isClicked
    }
  if (btnMed.isClicked()===true){
     difficulty = 'medium';
-  } if (btnHard.isClicked()=== true){
+  }if (btnHard.isClicked()=== true){
     difficulty = 'hard';
   }
 }

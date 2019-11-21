@@ -10,7 +10,7 @@ class Snake{
 
   }// end constructor
 
-  loadSegment(){
+  loadSegment(){ // adds body segment to array
     this.body.push(createVector(this.head.x, this.head.y));
   }
 
@@ -23,12 +23,11 @@ class Snake{
     this.keyPressed();
   //  this.checkEdges();
     for(var i = 0; i< food.length; i++){
-    if(this.head.x === food[i].loc.x &&
-       this.head.y === food[i].loc.y){
-         this.loadSegment();
-         score++;
-         timerValue = timerValue + 2;
-         if (setting === 'w'){
+      if(this.head.x === food[i].loc.x && this.head.y === food[i].loc.y){ // if head is overlapping food
+            this.loadSegment();
+            score++;
+            timerValue = timerValue + 2;
+         if (setting === 'w'){ // add new food to screen
            food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(80, 242,167)));
          }
          else if (setting === 'd') {
@@ -40,24 +39,21 @@ class Snake{
 
          }
          else if (setting === 'f') {
-           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(240, 31, 35)));
+           food.push(new Food (Math.floor(Math.random()*25)*30,Math.floor(Math.random()*25)*30, color(250,178,10)));
          }
-
-
      }
    }
     // update the body
     for (i = this.body.length-1; i>=0; i--){
-    if (i >= 1){
-      this.body[i].x = this.body[i-1].x;
-      this.body[i].y = this.body[i-1].y;
-   }  if (i === 0){
-      this.body[i].x = this.head.x;
-      this.body[i].y = this.head.y;
-    }
- }
-
-}//end update
+        if (i >= 1){
+          this.body[i].x = this.body[i-1].x;
+          this.body[i].y = this.body[i-1].y;
+    }   if (i === 0){
+          this.body[i].x = this.head.x;
+          this.body[i].y = this.head.y;
+        }
+      }
+    }//end update
 
   render(){
  // render head
@@ -65,8 +61,7 @@ class Snake{
     rect(this.head.x, this.head.y, this.w, this.w);
  // render the body
     for(var i = 0; i < this.body.length; i++){
-
-      if(i%3 === 0){
+      if(i%3 === 0){ // to alternate colors
         fill(255);
         rect(this.body[i].x, this.body[i].y, this.w, this.w);
       }
@@ -78,11 +73,10 @@ class Snake{
  }
 
 
-
   tangled(){
     //for loop checking each segment in the segment array
     for(var i = 1; i < this.body.length; i++){
-      //if stament checking if the headations are equal to each other
+      //if stament checking if the hed and body locs are equal to each other
       if(this.head.x == this.body[i].x && this.head.y == this.body[i].y){
         return true;
       }
@@ -90,31 +84,23 @@ class Snake{
   }
 
    keyPressed(){
-     this.head.add(this.vel);
+    this.head.add(this.vel);
     if(keyCode === UP_ARROW){
         this.vel.x = 0;
         this.vel.y = -30;
-    }
+      }
     if(keyCode === DOWN_ARROW){
       this.vel.x = 0;
       this.vel.y = 30;
-
-  //    this.head.y = this.head.y + this.w;
       }
     if(keyCode === LEFT_ARROW){
       this.vel.y = 0;
       this.vel.x = -30;
-  //  this.head.x = this.head.x - this.w;
       }
     if(keyCode === RIGHT_ARROW){
       this.vel.y = 0;
-      this.vel.x =30
-  //  this.head.x = this.head.x + this.w;
-
+      this.vel.x =30;
       }
   }//end keyPressed
-
-
-
 
 } //++++++++++++++++ End Snake
