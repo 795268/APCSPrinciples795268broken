@@ -208,6 +208,8 @@ function clearEverything() { //clear gamestate and score for restarting level
   score = 0 ;
   timerValue = 10;
   food = [];
+  snake.vel.x = 0;
+  snake.vel.y= 0; 
 }
 
 function checkDifficulty(){ //check which difficulty button is isClicked
